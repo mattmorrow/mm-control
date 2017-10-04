@@ -19,7 +19,7 @@ import Control.Monad.ST(ST)
 class (Monad m) => RunM m a b | m a -> b where
   runM :: m a -> b
 
-class (Monad m, Monad n) => LiftM m n where
+class (Monad m, Monad n) => LiftM m n | m -> n where
   lift :: n a -> m a
 
 class (Monad m) => STM m where
@@ -28,7 +28,7 @@ class (Monad m) => STM m where
 class (Monad m) => IOM m where
   ioM :: IO a -> m a
 
-class (Monad m) => StateM m s where
+class (Monad m) => StateM m s | m -> s where
   get :: m s
   set :: s -> m ()
   gets :: (s -> a) -> m a
@@ -36,24 +36,24 @@ class (Monad m) => StateM m s where
   gets f = do x <- get; let {!a = f x}; return a
   modify f = do x <- get; let {!y = f x}; set y
 
-class (Monad m) => ReaderM m r where
+class (Monad m) => ReaderM m r | m -> r where
   ask :: m r
   local :: (r -> r) -> m a -> m a
   asks :: (r -> a) -> m a
   asks f = do x <- ask; let {!a = f x}; return a
 
-class (Monad m) => WriterM m w where
+class (Monad m) => WriterM m w | m -> w where
   put :: w -> m ()
   collect :: m a -> m (a, w)
 
 class (Monad m) => ContM m where
   callCC :: ((a -> m b) -> m a) -> m a
 
-class Monad m => ExceptionM m e where
+class Monad m => ExceptionM m e | m -> e where
   raise :: e -> m a
   try :: m a -> m (Either e a)
 
-class Monad m => AbortM m e where
+class Monad m => AbortM m e | m -> e where
   abort :: e -> m a
 
 class (Monad m) => UniqM m where

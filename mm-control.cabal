@@ -8,7 +8,7 @@ author:               Matthew Morrow
 maintainer:           Matthew Morrow <mjm2002@gmail.com>
 copyright:            (c) 2009-2017 Matthew Morrow
 homepage:             https://github.com/mattmorrow/mm-control#readme
-category:             Data, Data Structures
+category:             Monads
 -- synopsis:
 -- description:
 extra-source-files:   README.md,
