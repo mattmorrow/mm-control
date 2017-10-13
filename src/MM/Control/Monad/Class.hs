@@ -8,7 +8,7 @@ module MM.Control.Monad.Class (
   ,ReaderM(..)
   ,WriterM(..)
   ,ContM(..)
-  ,ExceptionM(..)
+  ,ExceptM(..)
   ,AbortM(..)
   ,UniqM(..)
   ,Uniq2M(..)
@@ -49,7 +49,7 @@ class (Monad m) => WriterM m w | m -> w where
 class (Monad m) => ContM m where
   callCC :: ((a -> m b) -> m a) -> m a
 
-class Monad m => ExceptionM m e | m -> e where
+class Monad m => ExceptM m e | m -> e where
   raise :: e -> m a
   try :: m a -> m (Either e a)
 

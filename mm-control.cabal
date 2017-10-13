@@ -52,6 +52,7 @@ library
                       MM.Control.Monad.S.U
                       MM.Control.Monad.S.U2
                       MM.Control.Monad.S.M
+                      MM.Control.Monad.S.ME
                       MM.Control.Monad.S.ST
                       MM.Control.Monad.S.IO
                       MM.Control.Monad.I.I
